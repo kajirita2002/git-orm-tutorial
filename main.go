@@ -19,8 +19,8 @@ func handleRequest() {
 	router.HandleFunc("/", helloWorld).Methods("GET")
 	router.HandleFunc("/users", entity.AllUsers)
 	router.HandleFunc("/user/{name}{email}", entity.NewUser).Methods("POST")
-	router.HandleFunc("/users", entity.DeleteUser).Methods("DELETE")
-	router.HandleFunc("/users", entity.UpdateUser).Methods("PUT")
+	router.HandleFunc("/users/{name}", entity.DeleteUser).Methods("DELETE")
+	router.HandleFunc("/users/{name}{email}", entity.UpdateUser).Methods("PUT")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 

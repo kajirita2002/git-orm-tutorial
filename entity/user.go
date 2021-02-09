@@ -47,10 +47,11 @@ func NewUser(w http.ResponseWriter, r *http.Request) {
 		panic("Could not connect to the database")
 	}
 	defer db.Close()
+	// requestのパラメータの値を取得する
 	vars := mux.Vars(r)
 	name := vars["name"]
 	email := vars["email"]
-
+	// 追加される
 	db.Create(&User{Name: name, Email: email})
 	fmt.Fprintf(w, "New User Successfully Created")
 }
